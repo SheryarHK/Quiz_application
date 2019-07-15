@@ -5,7 +5,7 @@ void main() {
     home: Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         title: Text(
           'Quiz App',
           style: TextStyle(
@@ -18,7 +18,14 @@ void main() {
   ));
 }
 
-class Body extends StatelessWidget {
+List<Widget> answers = [];
+
+class Body extends StatefulWidget {
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -26,7 +33,7 @@ class Body extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
-            flex: 3,
+            flex: 5,
             child: Center(
               child: Text(
                 'Question',
@@ -38,22 +45,58 @@ class Body extends StatelessWidget {
             ),
           ),
           Expanded(
-            flex: 1,
-            child: FlatButton(
-              shape: CircleBorder(),
-              onPressed: () {},
-              child: Text('TRUE'),
-              color: Colors.green,
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: FlatButton(
+                onPressed: () {
+                  setState(() {
+                    answers.add(Icon(
+                      Icons.check,
+                      color: Colors.green,
+                    ));
+                  });
+                },
+                child: Text(
+                  'True',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 21,
+                  ),
+                ),
+                color: Colors.green,
+              ),
             ),
           ),
           Expanded(
-            flex: 1,
-            child: FlatButton(
-              shape: CircleBorder(),
-              onPressed: () {},
-              child: Text('False'),
-              color: Colors.red,
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: FlatButton(
+                onPressed: () {
+                  setState(() {
+                    answers.add(Icon(
+                      Icons.close,
+                      color: Colors.red,
+                    ));
+                  });
+                },
+                child: Text(
+                  'False',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 21,
+                  ),
+                ),
+                color: Colors.red,
+              ),
             ),
+          ),
+          SizedBox(
+            height: 2,
+          ),
+          Row(
+            children: answers,
           )
         ],
       ),
