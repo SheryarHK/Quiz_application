@@ -28,7 +28,6 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  int i = 0;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -39,7 +38,7 @@ class _BodyState extends State<Body> {
             flex: 5,
             child: Center(
               child: Text(
-                Question_bank[i].questionText,
+                getQuestionText(),
                 style: TextStyle(
                   fontSize: 21,
                   color: Colors.white,
@@ -54,14 +53,14 @@ class _BodyState extends State<Body> {
               child: FlatButton(
                 onPressed: () {
                   bool userPressed = true;
-                  if (Question_bank[i].questionAnswer == userPressed) {
+                  if (getQuestionAnswer() == userPressed) {
                     print('correct');
                   } else {
                     print('Wrong');
                   }
 
                   setState(() {
-                    i = i + 1;
+                    questionNumber();
                   });
                 },
                 child: Text(
@@ -82,13 +81,13 @@ class _BodyState extends State<Body> {
               child: FlatButton(
                 onPressed: () {
                   bool userPressed = true;
-                  if (Question_bank[i].questionAnswer == userPressed) {
+                  if (getQuestionAnswer() == userPressed) {
                     print('Wrong');
                   } else {
                     print('correct');
                   }
                   setState(() {
-                    i = i + 1;
+                    questionNumber();
                   });
                 },
                 child: Text(
