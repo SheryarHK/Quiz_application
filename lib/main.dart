@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'question_brain.dart';
+import 'question_bank.dart';
 
 void main() {
   return runApp(MaterialApp(
@@ -21,16 +22,6 @@ void main() {
 
 List<Icon> result = [];
 
-List<Questions> question_bank = [
-  Questions('Stars are countable', false),
-  Questions('Cows can fly', false),
-  Questions('humans can live forever', false),
-  Questions('Cars can fly', false),
-  Questions('we only live once', false),
-  Questions('iPhones are the best', true),
-  Questions('Ps4 is greatest', true),
-];
-
 class Body extends StatefulWidget {
   @override
   _BodyState createState() => _BodyState();
@@ -48,7 +39,7 @@ class _BodyState extends State<Body> {
             flex: 5,
             child: Center(
               child: Text(
-                question_bank[i].questionText,
+                Question_bank[i].questionText,
                 style: TextStyle(
                   fontSize: 21,
                   color: Colors.white,
@@ -63,7 +54,7 @@ class _BodyState extends State<Body> {
               child: FlatButton(
                 onPressed: () {
                   bool userPressed = true;
-                  if (question_bank[i].questionAnswer == userPressed) {
+                  if (Question_bank[i].questionAnswer == userPressed) {
                     print('correct');
                   } else {
                     print('Wrong');
@@ -91,7 +82,7 @@ class _BodyState extends State<Body> {
               child: FlatButton(
                 onPressed: () {
                   bool userPressed = true;
-                  if (question_bank[i].questionAnswer == userPressed) {
+                  if (Question_bank[i].questionAnswer == userPressed) {
                     print('Wrong');
                   } else {
                     print('correct');
