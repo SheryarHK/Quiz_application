@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'question_brain.dart';
 import 'question_bank.dart';
 
@@ -28,6 +29,46 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
+  void checkAnswers(bool userPressed) {
+    setState(() {
+      questionNumber();
+      if (!isFinished()) {
+        if (userPressed == getQuestionAnswer()) {
+          result.add(Icon(
+            Icons.check,
+            color: Colors.green,
+          ));
+        } else {
+          result.add(Icon(
+            Icons.close,
+            color: Colors.red,
+          ));
+        }
+      } else {
+        Alert(
+          context: context,
+          type: AlertType.error,
+          title: "No more Questions!",
+          buttons: [
+            DialogButton(
+              child: Text(
+                "Ok",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              width: 120,
+            )
+          ],
+        ).show();
+
+        reset();
+        result.clear();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -53,15 +94,8 @@ class _BodyState extends State<Body> {
               child: FlatButton(
                 onPressed: () {
                   bool userPressed = true;
-                  if (getQuestionAnswer() == userPressed) {
-                    print('correct');
-                  } else {
-                    print('Wrong');
-                  }
 
-                  setState(() {
-                    questionNumber();
-                  });
+                  checkAnswers(userPressed);
                 },
                 child: Text(
                   'True',
@@ -80,15 +114,9 @@ class _BodyState extends State<Body> {
               padding: const EdgeInsets.all(20.0),
               child: FlatButton(
                 onPressed: () {
-                  bool userPressed = true;
-                  if (getQuestionAnswer() == userPressed) {
-                    print('Wrong');
-                  } else {
-                    print('correct');
-                  }
-                  setState(() {
-                    questionNumber();
-                  });
+                  bool userPressed = false;
+
+                  checkAnswers(userPressed);
                 },
                 child: Text(
                   'False',

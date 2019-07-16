@@ -21,12 +21,19 @@ bool getQuestionAnswer() {
 }
 
 void questionNumber() {
-  int len = _Question_bank.length;
   if (_i < _Question_bank.length - 1) {
     _i++;
+  } else {}
+}
 
-    print('user at $_i' + 'and the total length is $len');
+bool isFinished() {
+  if (_i == _Question_bank.length - 1) {
+    return true;
   } else {
-    print('No more questions');
+    return false;
   }
+}
+
+void reset() {
+  _i = 0;
 }
